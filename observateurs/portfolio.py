@@ -12,3 +12,5 @@ class Portfolio(Observateur):
         for ticker, info in titres.items():
             valeur += info["prix"] * info["quantite"]
         self.label_valeur.config(text=f"Valeur totale : {valeur:.2f} $")
+
+    

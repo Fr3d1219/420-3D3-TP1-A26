@@ -30,6 +30,7 @@ class Dashboard(tk.Tk):
     def _creer_boutons(self) -> None:
         #Il faut faire les boutons de l'interface dans cette section (voir app.py)
         pass
+    
 
     #Pour aider, aller voir le projet POMODORO le fichier dashboard.py donne un bon exemple
     
