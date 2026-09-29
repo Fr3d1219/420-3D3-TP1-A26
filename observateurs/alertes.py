@@ -9,5 +9,14 @@ class Alertes(Observateur):
         messages = []
         for ticker, info in donnees["titres"].items():
             if info["prix"] >= info["seuil_haut"]:
-                messages.append(f"{ticker} : seuil haut atteint")
-        self.label_alertes.config(text="\n".join(messages) if messages else "Aucune alerte")
+                messages.append(
+                    f"⚠️ {ticker} dépasse le seuil haut ({info['prix']:.2f} $ ≥ {info['seuil_haut']:.2f} $)"
+                )
+            elif info["prix"] <= info["seuil_bas"]:
+                messages.append(
+                    f"⚠️ {ticker} sous le seuil bas ({info['prix']:.2f} $ ≤ {info['seuil_bas']:.2f} $)"
+                )
+        self.label_alertes.config(
+            text="\n".join(messages) if messages else "Aucune alerte",
+            fg="red" if messages else "gray",
+        )

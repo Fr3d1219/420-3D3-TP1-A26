@@ -14,10 +14,12 @@ class Prix(Sujet):
         info = yf.Ticker(ticker).fast_info
         prix = info["last_price"]
         ouverture = info["open"]
+        if prix is None or ouverture is None:
+            raise ValueError(f"Impossible de récupérer les données du titre '{ticker}'.")
         return prix, ouverture
 
     def rafraichir(self):
-        for ticker in self._prix_actuels:
+        for ticker in list(self._prix_actuels):
             prix, ouverture = self.recuperer_prix(ticker)
             self._prix_actuels[ticker]["prix"] = prix
             self._prix_actuels[ticker]["ouverture"] = ouverture
